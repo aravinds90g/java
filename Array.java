@@ -1482,38 +1482,59 @@ public class Array {
   // return max;
   // }
 
-  public static int largestSubString(String s, int k) {
-    HashMap<Character, Integer> map = new HashMap<>();
-    int maxLength = 0;
-    int right = 0;
+  // public static int largestSubString(String s, int k) {
+  //   HashMap<Character, Integer> map = new HashMap<>();
+  //   int maxLength = 0;
+  //   int right = 0;
+  //   int left = 0;
+  //   while (right < s.length()) {
+  //     map.put(s.charAt(right), map.getOrDefault(s.charAt(right), 0) + 1);
+
+  //     if (map.size() <= k) {
+  //       maxLength = Math.max(maxLength, right - left + 1);
+  //     } else {
+  //       while (map.size() > k && left <s.length()) {
+  //         char leftChar = s.charAt(left);
+  //         map.put(leftChar, map.get(leftChar) - 1);
+  //         if (map.get(leftChar) == 0) {
+  //           map.remove(leftChar);
+  //         }
+  //         left++;
+  //       }
+  //     }
+
+  //     right++;
+  //   }
+
+  //   return maxLength;
+  // }
+  public static int LargestDifferentInteger(int arr[], int k){
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int count = 0;
     int left = 0;
-    while (right < s.length()) {
-      map.put(s.charAt(right), map.getOrDefault(s.charAt(right), 0) + 1);
 
-      if (map.size() <= k) {
-        maxLength = Math.max(maxLength, right - left + 1);
-      } else {
-        while (map.size() > k && left <s.length()) {
-          char leftChar = s.charAt(left);
-          map.put(leftChar, map.get(leftChar) - 1);
-          if (map.get(leftChar) == 0) {
-            map.remove(leftChar);
-          }
-          left++;
+    for (int right = 0; right < arr.length; right++) {
+        map.put(arr[right], map.getOrDefault(arr[right], 0) + 1);
+
+        while (map.size() > k) {
+            int leftVal = arr[left];
+            map.put(leftVal, map.get(leftVal) - 1);
+            if (map.get(leftVal) == 0) {
+                map.remove(leftVal);
+            }
+            left++;
         }
-      }
 
-      right++;
+        count += (right - left + 1);
     }
 
-    return maxLength;
+    return count;
   }
-
   public static void main(String[] args) {
-    int arr[] = { 96, 90, 41, 82, 39, 74, 64, 50, 30 };
+    int arr[] = { 1, 2, 1, 2, 3};
     // int value = binarySubArraySum(arr, 2);
-    String str = "aabaaab";
-    int value = largestSubString(str, 2);
+    // String str = "aabaaab";
+    int value = LargestDifferentInteger(arr, 2);
     System.out.println(value);
   }
 
