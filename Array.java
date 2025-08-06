@@ -1483,58 +1483,93 @@ public class Array {
   // }
 
   // public static int largestSubString(String s, int k) {
-  //   HashMap<Character, Integer> map = new HashMap<>();
-  //   int maxLength = 0;
-  //   int right = 0;
-  //   int left = 0;
-  //   while (right < s.length()) {
-  //     map.put(s.charAt(right), map.getOrDefault(s.charAt(right), 0) + 1);
+  // HashMap<Character, Integer> map = new HashMap<>();
+  // int maxLength = 0;
+  // int right = 0;
+  // int left = 0;
+  // while (right < s.length()) {
+  // map.put(s.charAt(right), map.getOrDefault(s.charAt(right), 0) + 1);
 
-  //     if (map.size() <= k) {
-  //       maxLength = Math.max(maxLength, right - left + 1);
-  //     } else {
-  //       while (map.size() > k && left <s.length()) {
-  //         char leftChar = s.charAt(left);
-  //         map.put(leftChar, map.get(leftChar) - 1);
-  //         if (map.get(leftChar) == 0) {
-  //           map.remove(leftChar);
-  //         }
-  //         left++;
-  //       }
-  //     }
-
-  //     right++;
-  //   }
-
-  //   return maxLength;
+  // if (map.size() <= k) {
+  // maxLength = Math.max(maxLength, right - left + 1);
+  // } else {
+  // while (map.size() > k && left <s.length()) {
+  // char leftChar = s.charAt(left);
+  // map.put(leftChar, map.get(leftChar) - 1);
+  // if (map.get(leftChar) == 0) {
+  // map.remove(leftChar);
   // }
-  public static int LargestDifferentInteger(int arr[], int k){
-    HashMap<Integer, Integer> map = new HashMap<>();
+  // left++;
+  // }
+  // }
+
+  // right++;
+  // }
+
+  // return maxLength;
+  // }
+  // public static int LargestDifferentInteger(int arr[], int k){
+  // HashMap<Integer, Integer> map = new HashMap<>();
+  // int count = 0;
+  // int left = 0;
+
+  // for (int right = 0; right < arr.length; right++) {
+  // map.put(arr[right], map.getOrDefault(arr[right], 0) + 1);
+
+  // while (map.size() > k) {
+  // int leftVal = arr[left];
+  // map.put(leftVal, map.get(leftVal) - 1);
+  // if (map.get(leftVal) == 0) {
+  // map.remove(leftVal);
+  // }
+  // left++;
+  // }
+
+  // count += (right - left + 1);
+  // }
+
+  // return count;
+  // }
+
+  public static int minWindowSubString(String s, String t) {
     int count = 0;
+    String[] str = s.split("");
+    String[] strT = t.split("");
+    HashMap<String, Integer> map = new HashMap<>();
+
+    for (int i = 0; i < str.length; i++) {
+      map.put(str[i], map.getOrDefault(map, 0) + 1);
+    }
+    int right = 0;
     int left = 0;
+    int minLength = Integer.MAX_VALUE;
+    while (right < str.length) {
 
-    for (int right = 0; right < arr.length; right++) {
-        map.put(arr[right], map.getOrDefault(arr[right], 0) + 1);
+      if (map.get(str[right]) == 0) {
+        count++;
+        minLength = Math.min(right - left + 1, minLength); 
+      }
 
-        while (map.size() > k) {
-            int leftVal = arr[left];
-            map.put(leftVal, map.get(leftVal) - 1);
-            if (map.get(leftVal) == 0) {
-                map.remove(leftVal);
-            }
-            left++;
+      while (count == t.length()) {
+        minLength = Math.min(right - left + 1, minLength);
+        map.put(str[left], map.get(str[left]) + 1);
+        if (map.get(str[left]) > 0) {
+          count--;
         }
-
-        count += (right - left + 1);
+        left++;
+      }
+      map.put(str[right], map.getOrDefault(str[right], 0) - 1);
+      right++;
     }
 
-    return count;
+    return minLength;
   }
+
   public static void main(String[] args) {
-    int arr[] = { 1, 2, 1, 2, 3};
+    int arr[] = { 1, 2, 1, 2, 3 };
     // int value = binarySubArraySum(arr, 2);
     // String str = "aabaaab";
-    int value = LargestDifferentInteger(arr, 2);
+    int value = minWindowSubString("ddaaabbca", "abc");
     System.out.println(value);
   }
 
