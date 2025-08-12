@@ -1531,46 +1531,77 @@ public class Array {
   // return count;
   // }
 
-  public static int minWindowSubString(String s, String t) {
-    int count = 0;
-    String[] str = s.split("");
-    String[] strT = t.split("");
-    HashMap<String, Integer> map = new HashMap<>();
+  // public static int minWindowSubString(String s, String t) {
+  // int count = 0;
+  // String[] str = s.split("");
+  // String[] strT = t.split("");
+  // HashMap<String, Integer> map = new HashMap<>();
 
-    for (int i = 0; i < str.length; i++) {
-      map.put(str[i], map.getOrDefault(map, 0) + 1);
-    }
-    int right = 0;
-    int left = 0;
-    int minLength = Integer.MAX_VALUE;
-    while (right < str.length) {
+  // for (int i = 0; i < str.length; i++) {
+  // map.put(str[i], map.getOrDefault(map, 0) + 1);
+  // }
+  // int right = 0;
+  // int left = 0;
+  // int minLength = Integer.MAX_VALUE;
+  // while (right < str.length) {
 
-      if (map.get(str[right]) == 0) {
-        count++;
-        minLength = Math.min(right - left + 1, minLength); 
+  // if (map.get(str[right]) == 0) {
+  // count++;
+  // minLength = Math.min(right - left + 1, minLength);
+  // }
+
+  // while (count == t.length()) {
+  // minLength = Math.min(right - left + 1, minLength);
+  // map.put(str[left], map.get(str[left]) + 1);
+  // if (map.get(str[left]) > 0) {
+  // count--;
+  // }
+  // left++;
+  // }
+  // map.put(str[right], map.getOrDefault(str[right], 0) - 1);
+  // right++;
+  // }
+
+  // return minLength;
+  // }
+
+  public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    int n = nums1.length + nums2.length;
+    // System.out.println(n);
+    int arr[] = new int[n];
+    double value = 0.00;
+    int nums1Index = 0;
+    int nums2Index = 0;
+    for (int i = 0; i < n; i++) {
+      if (nums1Index < nums1.length && (nums2Index >= nums2.length || nums1[nums1Index] <= nums2[nums2Index])) {
+        arr[i] = nums1[nums1Index];
+        nums1Index++;
+      } else {
+        arr[i] = nums2[nums2Index];
+        nums2Index++;
       }
-
-      while (count == t.length()) {
-        minLength = Math.min(right - left + 1, minLength);
-        map.put(str[left], map.get(str[left]) + 1);
-        if (map.get(str[left]) > 0) {
-          count--;
-        }
-        left++;
-      }
-      map.put(str[right], map.getOrDefault(str[right], 0) - 1);
-      right++;
+    }
+     
+    System.out.println(n/2);
+    int i = n/2;
+    if(n%2 == 0){
+      value = (double)(arr[i] + arr[i-1])/2;
+    }else{
+      value = arr[i];
     }
 
-    return minLength;
+    return value;
   }
 
   public static void main(String[] args) {
-    int arr[] = { 1, 2, 1, 2, 3 };
+    int arr[] = { 1, 2, 3 };
+    int arr1[] = { 4, 5 };
     // int value = binarySubArraySum(arr, 2);
     // String str = "aabaaab";
-    int value = minWindowSubString("ddaaabbca", "abc");
-    System.out.println(value);
+    // int value = minWindowSubString("ddaaabbca", "abc");
+    
+    double value  = findMedianSortedArrays(arr, arr1);
+    System.out.println("value : "+value);
   }
 
 }
