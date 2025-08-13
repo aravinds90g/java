@@ -1565,43 +1565,118 @@ public class Array {
   // return minLength;
   // }
 
-  public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-    int n = nums1.length + nums2.length;
-    // System.out.println(n);
-    int arr[] = new int[n];
-    double value = 0.00;
-    int nums1Index = 0;
-    int nums2Index = 0;
-    for (int i = 0; i < n; i++) {
-      if (nums1Index < nums1.length && (nums2Index >= nums2.length || nums1[nums1Index] <= nums2[nums2Index])) {
-        arr[i] = nums1[nums1Index];
-        nums1Index++;
-      } else {
-        arr[i] = nums2[nums2Index];
-        nums2Index++;
-      }
-    }
+  // public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+  //   int n = nums1.length + nums2.length;
+  //   // System.out.println(n);
+  //   int arr[] = new int[n];
+  //   double value = 0.00;
+  //   int nums1Index = 0;
+  //   int nums2Index = 0;
+  //   for (int i = 0; i < n; i++) {
+  //     if (nums1Index < nums1.length && (nums2Index >= nums2.length || nums1[nums1Index] <= nums2[nums2Index])) {
+  //       arr[i] = nums1[nums1Index];
+  //       nums1Index++;
+  //     } else {
+  //       arr[i] = nums2[nums2Index];
+  //       nums2Index++;
+  //     }
+  //   }
      
-    System.out.println(n/2);
-    int i = n/2;
-    if(n%2 == 0){
-      value = (double)(arr[i] + arr[i-1])/2;
-    }else{
-      value = arr[i];
-    }
+  //   System.out.println(n/2);
+  //   int i = n/2;
+  //   if(n%2 == 0){
+  //     value = (double)(arr[i] + arr[i-1])/2;
+  //   }else{
+  //     value = arr[i];
+  //   }
 
-    return value;
-  }
+  //   return value;
+  // }
+  
+
+  // public static String longestCommonPrefix(String[] strs) {
+  //   int n = strs.length;
+  //   int minCount = 999;
+  //   HashMap<Integer, Character> map = new HashMap<>();
+  //   for (int i = 0; i < n; i++) {
+  //     int count = 0;
+  //     for (int j = 0; j < strs[i].length(); j++) {
+  //       if (i == 0)
+  //         map.put(j, strs[i].charAt(j));
+  //       else {
+  //         if (map.get(j) == strs[i].charAt(j)) {
+  //           count++;
+  //         }else{
+  //           break;
+  //         }
+  //       }
+        
+  //     }
+  //      if(i!=0)  minCount = Math.min(count, minCount);
+
+  //     // System.out.println(map);
+  //   }
+
+  //   //  System.out.println(minCount);
+  //   String str = "";
+  //   for (int i = 0; i < minCount; i++) {
+  //     str = str + Character.toString(strs[0].charAt(i));
+  //   }
+
+  //   return str;
+  // }
+
+  // public static int removeElement(int[] nums, int val) {
+  //   int count = 0;
+  //   for (int i = 0; i < nums.length; i++) {
+  //     if (nums[i] != val) {
+  //       count++;
+  //     }
+  //   }
+
+  //   return count;
+  // }
+
+  // public static int findUnique(int[] arr) {
+  //   int unique = 0;
+  //   HashMap<Integer, Integer> map = new HashMap<>();
+  //   for (int i = 0; i < arr.length; i++) {
+  //     map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+  //   }
+
+  //   System.out.println(map);
+
+  //   for (int num : map.keySet()) {
+  //     if (map.get(num) == 1) {
+  //       unique = num;
+  //       break;
+  //     }
+  //   }
+
+  //   return unique;
+  // }
+
+
+  public static void divideByFour(ArrayList<Integer> arr){
+        // Write your code here.
+
+        System.out.println(59%4 == 0);
+    }
+        
 
   public static void main(String[] args) {
-    int arr[] = { 1, 2, 3 };
-    int arr1[] = { 4, 5 };
-    // int value = binarySubArraySum(arr, 2);
-    // String str = "aabaaab";
-    // int value = minWindowSubString("ddaaabbca", "abc");
-    
-    double value  = findMedianSortedArrays(arr, arr1);
-    System.out.println("value : "+value);
+    // int[] arr = {5 ,3, 1, 5, 1, 3, 4, 7, 4, 8, 8 };
+    ArrayList<Integer> arr= new ArrayList<>();
+   arr.add(4);
+   arr.add(8);
+   arr.add(12);
+
+    divideByFour(arr);
+   System.out.println(arr);
+   //  System.out.println(data);
+
+
+
   }
 
 }
