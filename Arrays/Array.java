@@ -1675,16 +1675,21 @@ public class Array {
   // }
 
 
-  public static String addBinary(String a, String b){
-         String ans = "" ;
-         int value1 = Integer.parseInt(a,2);
-         int value2 = Integer.parseInt(b,2);
+  public static int findDuplicate(ArrayList<Integer> arr) {
 
-         int data = value1 + value2;
+    HashMap<Integer, Integer> map = new HashMap<>();
 
-         ans  = ans + Integer.toBinaryString(data);
-        // System.out.println(ans);
-         return ans;
+    for (int i = 0; i < arr.size(); i++) {
+      map.put(arr.get(i), map.getOrDefault(arr.get(i), 0) + 1);
+    }
+    int ans = -1;
+    for (int num : map.keySet()) {
+      if (map.get(num) > 1) {
+        ans = num;
+      }
+    }
+
+    return ans;
   }
 
   public static void main(String[] args) {
