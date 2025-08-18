@@ -1273,9 +1273,6 @@ public class Array {
   // return maxProduct;
   // }
 
-  /**
-   * @param arr
-   */
 
   // public static int binarySearch(int arr[], int low, int high, int target) {
 
@@ -1692,30 +1689,49 @@ public class Array {
   //   return ans;
   // }
 
-  public static int[] firstAndLastPosition(ArrayList<Integer> arr, int n, int k) {
-    // Write your code here.
-    boolean found = false;
-    int ans[] = new int[2];
-    ans[0] = -1;
-    ans[1] = -1;
-    for (int i = 0; i < n; i++) {
-      if (arr.get(i) == k ) {
-        if (!found) {
-          ans[0] = i; // first occurrence
-          found = true;
-        }
-        ans[1] = i;
-        System.out.println(ans[1]);
+  // public static int[] firstAndLastPosition(ArrayList<Integer> arr, int n, int k) {
+  //   // Write your code here.
+  //   boolean found = false;
+  //   int ans[] = new int[2];
+  //   ans[0] = -1;
+  //   ans[1] = -1;
+  //   for (int i = 0; i < n; i++) {
+  //     if (arr.get(i) == k ) {
+  //       if (!found) {
+  //         ans[0] = i; // first occurrence
+  //         found = true;
+  //       }
+  //       ans[1] = i;
+  //       System.out.println(ans[1]);
+  //     }
+  //   }
+  //   return ans;
+  // }
+
+  public static List<int[]> pairSum(ArrayList<Integer> arr, int s) {
+    HashMap<Integer, Integer> map = new HashMap<>();
+    List<int[]> list = new ArrayList<>();
+    int i = 0;
+    int sum = 0;
+    while (i < arr.size()) {
+      sum = s - arr.get(i);
+      if (map.containsKey(sum)) {
+          list.add(new int[]{arr.get(i) , sum});
       }
+
+      map.put(arr.get(i), i);
+      i++;
     }
-    return ans;
+    list.sort(Comparator.comparingInt(a -> a[0]));
+    return list;
   }
 
   public static void main(String[] args) {
   
-    ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(0,1,2,2,2,2));
+    ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(1,2,3,4,5));
 
-    firstAndLastPosition(arr, 6, 2);
+    List<int[]> data = pairSum(arr, 5);
+    System.out.println(data );
 
   }
  
