@@ -1656,30 +1656,40 @@ public class Array {
   // return unique;
   // }
 
-  public static int[] plusOne(int[] digits) {
-    int n = digits.length;
+  // public static int[] plusOne(int[] digits) {
+  //   int n = digits.length;
 
-    // Start from last digit
-    for (int i = n - 1; i >= 0; i--) {
-      if (digits[i] < 9) {
-        digits[i]++;
-        return digits;
-      }
-      digits[i] = 0; 
-    }
+  //   // Start from last digit
+  //   for (int i = n - 1; i >= 0; i--) {
+  //     if (digits[i] < 9) {
+  //       digits[i]++;
+  //       return digits;
+  //     }
+  //     digits[i] = 0; 
+  //   }
 
  
-    int[] result = new int[n + 1];
-    result[0] = 1; // 999 -> 1000
-    return result;
+  //   int[] result = new int[n + 1];
+  //   result[0] = 1; // 999 -> 1000
+  //   return result;
+  // }
+
+
+  public static String addBinary(String a, String b){
+         String ans = "" ;
+         int value1 = Integer.parseInt(a,2);
+         int value2 = Integer.parseInt(b,2);
+
+         int data = value1 + value2;
+
+         ans  = ans + Integer.toBinaryString(data);
+        // System.out.println(ans);
+         return ans;
   }
 
   public static void main(String[] args) {
 
-    int value = '7' - '0';
-    int a [] = { 9, 9, 9, 9, 9, 999, 9, 9, 9, 9};
-    int  arr[] = plusOne(a);
-    System.out.println(arr[arr.length -1]);
+    addBinary("11", "1");
 
   }
 
