@@ -1675,27 +1675,48 @@ public class Array {
   // }
 
 
-  public static int findDuplicate(ArrayList<Integer> arr) {
+  // public static int findDuplicate(ArrayList<Integer> arr) {
 
-    HashMap<Integer, Integer> map = new HashMap<>();
+  //   HashMap<Integer, Integer> map = new HashMap<>();
 
-    for (int i = 0; i < arr.size(); i++) {
-      map.put(arr.get(i), map.getOrDefault(arr.get(i), 0) + 1);
-    }
-    int ans = -1;
-    for (int num : map.keySet()) {
-      if (map.get(num) > 1) {
-        ans = num;
+  //   for (int i = 0; i < arr.size(); i++) {
+  //     map.put(arr.get(i), map.getOrDefault(arr.get(i), 0) + 1);
+  //   }
+  //   int ans = -1;
+  //   for (int num : map.keySet()) {
+  //     if (map.get(num) > 1) {
+  //       ans = num;
+  //     }
+  //   }
+
+  //   return ans;
+  // }
+
+  public static int[] firstAndLastPosition(ArrayList<Integer> arr, int n, int k) {
+    // Write your code here.
+    boolean found = false;
+    int ans[] = new int[2];
+    ans[0] = -1;
+    ans[1] = -1;
+    for (int i = 0; i < n; i++) {
+      if (arr.get(i) == k ) {
+        if (!found) {
+          ans[0] = i; // first occurrence
+          found = true;
+        }
+        ans[1] = i;
+        System.out.println(ans[1]);
       }
     }
-
     return ans;
   }
 
   public static void main(String[] args) {
+  
+    ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(0,1,2,2,2,2));
 
-    addBinary("11", "1");
+    firstAndLastPosition(arr, 6, 2);
 
   }
-
+ 
 }
