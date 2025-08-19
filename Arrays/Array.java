@@ -1273,7 +1273,6 @@ public class Array {
   // return maxProduct;
   // }
 
-
   // public static int binarySearch(int arr[], int low, int high, int target) {
 
   // int mid = 0;
@@ -1654,85 +1653,106 @@ public class Array {
   // }
 
   // public static int[] plusOne(int[] digits) {
-  //   int n = digits.length;
+  // int n = digits.length;
 
-  //   // Start from last digit
-  //   for (int i = n - 1; i >= 0; i--) {
-  //     if (digits[i] < 9) {
-  //       digits[i]++;
-  //       return digits;
-  //     }
-  //     digits[i] = 0; 
-  //   }
-
- 
-  //   int[] result = new int[n + 1];
-  //   result[0] = 1; // 999 -> 1000
-  //   return result;
+  // // Start from last digit
+  // for (int i = n - 1; i >= 0; i--) {
+  // if (digits[i] < 9) {
+  // digits[i]++;
+  // return digits;
+  // }
+  // digits[i] = 0;
   // }
 
+  // int[] result = new int[n + 1];
+  // result[0] = 1; // 999 -> 1000
+  // return result;
+  // }
 
   // public static int findDuplicate(ArrayList<Integer> arr) {
 
-  //   HashMap<Integer, Integer> map = new HashMap<>();
+  // HashMap<Integer, Integer> map = new HashMap<>();
 
-  //   for (int i = 0; i < arr.size(); i++) {
-  //     map.put(arr.get(i), map.getOrDefault(arr.get(i), 0) + 1);
-  //   }
-  //   int ans = -1;
-  //   for (int num : map.keySet()) {
-  //     if (map.get(num) > 1) {
-  //       ans = num;
-  //     }
-  //   }
-
-  //   return ans;
+  // for (int i = 0; i < arr.size(); i++) {
+  // map.put(arr.get(i), map.getOrDefault(arr.get(i), 0) + 1);
+  // }
+  // int ans = -1;
+  // for (int num : map.keySet()) {
+  // if (map.get(num) > 1) {
+  // ans = num;
+  // }
   // }
 
-  // public static int[] firstAndLastPosition(ArrayList<Integer> arr, int n, int k) {
-  //   // Write your code here.
-  //   boolean found = false;
-  //   int ans[] = new int[2];
-  //   ans[0] = -1;
-  //   ans[1] = -1;
-  //   for (int i = 0; i < n; i++) {
-  //     if (arr.get(i) == k ) {
-  //       if (!found) {
-  //         ans[0] = i; // first occurrence
-  //         found = true;
-  //       }
-  //       ans[1] = i;
-  //       System.out.println(ans[1]);
-  //     }
-  //   }
-  //   return ans;
+  // return ans;
   // }
 
-  public static List<int[]> pairSum(ArrayList<Integer> arr, int s) {
-    HashMap<Integer, Integer> map = new HashMap<>();
-    List<int[]> list = new ArrayList<>();
-    int i = 0;
-    int sum = 0;
-    while (i < arr.size()) {
-      sum = s - arr.get(i);
-      if (map.containsKey(sum)) {
-          list.add(new int[]{arr.get(i) , sum});
-      }
+  // public static int[] firstAndLastPosition(ArrayList<Integer> arr, int n, int
+  // k) {
+  // // Write your code here.
+  // boolean found = false;
+  // int ans[] = new int[2];
+  // ans[0] = -1;
+  // ans[1] = -1;
+  // for (int i = 0; i < n; i++) {
+  // if (arr.get(i) == k ) {
+  // if (!found) {
+  // ans[0] = i; // first occurrence
+  // found = true;
+  // }
+  // ans[1] = i;
+  // System.out.println(ans[1]);
+  // }
+  // }
+  // return ans;
+  // }
 
-      map.put(arr.get(i), i);
-      i++;
+  // public static List<int[]> pairSum(ArrayList<Integer> arr, int s) {
+  // HashMap<Integer, Integer> map = new HashMap<>();
+  // List<int[]> list = new ArrayList<>();
+  // int i = 0;
+  // int sum = 0;
+  // while (i < arr.size()) {
+  // sum = s - arr.get(i);
+  // if (map.containsKey(sum)) {
+  // list.add(new int[]{arr.get(i) , sum});
+  // }
+
+  // map.put(arr.get(i), i);
+  // i++;
+  // }
+  // list.sort(Comparator.comparingInt(a -> a[0]));
+  // return list;
+  // }
+
+  public static ArrayList<Integer> findArrayIntersection(ArrayList<Integer> arr1, int n, ArrayList<Integer> arr2,
+      int m) {
+    // Write Your Code Here.
+    HashMap<Integer, Integer> map1 = new HashMap<>();
+    HashMap<Integer, Integer> map2 = new HashMap<>();
+    ArrayList<Integer> ans = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+      map1.put(arr1.get(i), map1.getOrDefault(arr1.get(i), 0) + 1);
     }
-    list.sort(Comparator.comparingInt(a -> a[0]));
-    return list;
+    for (int i = 0; i < m; i++) {
+      map2.put(arr2.get(i), map2.getOrDefault(arr2.get(i), 0) + 1);
+    }
+
+    // int listIndex = 0;
+    for (int num : map1.keySet()) {
+      if (map2.containsKey(num)) {
+        ans.add(num);
+      }
+    }
+
+    return ans;
   }
 
   public static void main(String[] args) {
-  
-    ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(1,2,3,4,5));
 
-    List<int[]> data = pairSum(arr, 5);
-    System.out.println(data );
-
+    ArrayList<Integer> arr1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+    ArrayList<Integer> arr2 = new ArrayList<>(Arrays.asList(3, 4 ,6, 8, 9));
+    ArrayList<Integer> ans = findArrayIntersection(arr1, 5, arr2, 5);
+    System.out.println(ans);
   }
- 
+
 }
