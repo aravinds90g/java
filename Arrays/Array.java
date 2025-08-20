@@ -1724,35 +1724,47 @@ public class Array {
   // return list;
   // }
 
-  public static ArrayList<Integer> findArrayIntersection(ArrayList<Integer> arr1, int n, ArrayList<Integer> arr2,
-      int m) {
-    // Write Your Code Here.
-    HashMap<Integer, Integer> map1 = new HashMap<>();
-    HashMap<Integer, Integer> map2 = new HashMap<>();
-    ArrayList<Integer> ans = new ArrayList<>();
-    for (int i = 0; i < n; i++) {
-      map1.put(arr1.get(i), map1.getOrDefault(arr1.get(i), 0) + 1);
-    }
-    for (int i = 0; i < m; i++) {
-      map2.put(arr2.get(i), map2.getOrDefault(arr2.get(i), 0) + 1);
-    }
+  // public static ArrayList<Integer> findArrayIntersection(ArrayList<Integer> arr1, int n, ArrayList<Integer> arr2,
+  //     int m) {
+  //   // Write Your Code Here.
+  //   HashMap<Integer, Integer> map1 = new HashMap<>();
+  //   HashMap<Integer, Integer> map2 = new HashMap<>();
+  //   ArrayList<Integer> ans = new ArrayList<>();
+  //   for (int i = 0; i < n; i++) {
+  //     map1.put(arr1.get(i), map1.getOrDefault(arr1.get(i), 0) + 1);
+  //   }
+  //   for (int i = 0; i < m; i++) {
+  //     map2.put(arr2.get(i), map2.getOrDefault(arr2.get(i), 0) + 1);
+  //   }
 
-    // int listIndex = 0;
-    for (int num : map1.keySet()) {
-      if (map2.containsKey(num)) {
-        ans.add(num);
-      }
-    }
+  //   // int listIndex = 0;
+  //   for (int num : map1.keySet()) {
+  //     if (map2.containsKey(num)) {
+  //       ans.add(num);
+  //     }
+  //   }
 
-    return ans;
-  }
+  //   return ans;
+  // }
+
+
+  // public boolean containsNearbyDuplicate(int[] nums, int k) {
+  //   HashMap<Integer, Integer> map = new HashMap<>();
+
+  //   for (int i = 0; i < nums.length; i++) {
+  //     if (map.containsKey(nums[i])) {
+  //       if (i - map.get(nums[i]) <= k) {
+  //         return true;
+  //       }
+  //     }
+  //     map.put(nums[i], i);
+  //   }
+
+  //   return false;
+  // }
 
   public static void main(String[] args) {
-
-    ArrayList<Integer> arr1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
-    ArrayList<Integer> arr2 = new ArrayList<>(Arrays.asList(3, 4 ,6, 8, 9));
-    ArrayList<Integer> ans = findArrayIntersection(arr1, 5, arr2, 5);
-    System.out.println(ans);
+       
   }
 
 }
