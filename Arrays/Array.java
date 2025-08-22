@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Array {
   // public static int findSecondLargestElement(int[] arr){
@@ -1724,63 +1725,111 @@ public class Array {
   // return list;
   // }
 
-  // public static ArrayList<Integer> findArrayIntersection(ArrayList<Integer> arr1, int n, ArrayList<Integer> arr2,
-  //     int m) {
-  //   // Write Your Code Here.
-  //   HashMap<Integer, Integer> map1 = new HashMap<>();
-  //   HashMap<Integer, Integer> map2 = new HashMap<>();
-  //   ArrayList<Integer> ans = new ArrayList<>();
-  //   for (int i = 0; i < n; i++) {
-  //     map1.put(arr1.get(i), map1.getOrDefault(arr1.get(i), 0) + 1);
-  //   }
-  //   for (int i = 0; i < m; i++) {
-  //     map2.put(arr2.get(i), map2.getOrDefault(arr2.get(i), 0) + 1);
+  // public static ArrayList<Integer> findArrayIntersection(ArrayList<Integer>
+  // arr1, int n, ArrayList<Integer> arr2,
+  // int m) {
+  // // Write Your Code Here.
+  // HashMap<Integer, Integer> map1 = new HashMap<>();
+  // HashMap<Integer, Integer> map2 = new HashMap<>();
+  // ArrayList<Integer> ans = new ArrayList<>();
+  // for (int i = 0; i < n; i++) {
+  // map1.put(arr1.get(i), map1.getOrDefault(arr1.get(i), 0) + 1);
+  // }
+  // for (int i = 0; i < m; i++) {
+  // map2.put(arr2.get(i), map2.getOrDefault(arr2.get(i), 0) + 1);
+  // }
+
+  // // int listIndex = 0;
+  // for (int num : map1.keySet()) {
+  // if (map2.containsKey(num)) {
+  // ans.add(num);
+  // }
+  // }
+
+  // return ans;
+  // }
+
+  // public boolean containsNearbyDuplicate(int[] nums, int k) {
+  // HashMap<Integer, Integer> map = new HashMap<>();
+
+  // for (int i = 0; i < nums.length; i++) {
+  // if (map.containsKey(nums[i])) {
+  // if (i - map.get(nums[i]) <= k) {
+  // return true;
+  // }
+  // }
+  // map.put(nums[i], i);
+  // }
+
+  // return false;
+  // }
+
+  // public int[] searchRange(int[] arr, int target) {
+  // int[] ans = new int[2];
+
+  // ans[0] = -1;
+  // ans[1] = -1;
+  // for (int i = 0; i < arr.length; i++) {
+  // if (arr[i] == target && ans[0] == -1) {
+  // ans[0] = i;
+  // ans[1] = i;
+  // } else if (arr[i] == target) {
+  // ans[1] = i;
+  // }
+  // }
+  // return ans;
+  // }
+
+  // public static String reverseString(String str) {
+  //   String arr[] = str.split(" ");
+  //   int n = arr.length - 1;
+  //   for (int i = 0; i < arr.length  / 2 ; i++) {
+  //     String temp = arr[i];
+  //     arr[i] = arr[n];
+  //     arr[n] = temp;
+  //     n--;
   //   }
 
-  //   // int listIndex = 0;
-  //   for (int num : map1.keySet()) {
-  //     if (map2.containsKey(num)) {
-  //       ans.add(num);
-  //     }
+  //   String ans = "";
+
+  //   for (int i = 0; i < arr.length; i++) {
+  //     ans = ans + arr[i] + " ";
   //   }
 
   //   return ans;
+
   // }
-
-
-  // public boolean containsNearbyDuplicate(int[] nums, int k) {
-  //   HashMap<Integer, Integer> map = new HashMap<>();
-
-  //   for (int i = 0; i < nums.length; i++) {
-  //     if (map.containsKey(nums[i])) {
-  //       if (i - map.get(nums[i]) <= k) {
-  //         return true;
-  //       }
-  //     }
-  //     map.put(nums[i], i);
-  //   }
-
-  //   return false;
-  // }
-
-  public int[] searchRange(int[] arr, int target) {
-    int[] ans = new int[2];
-
-    ans[0] = -1;
-    ans[1] = -1;
-    for (int i = 0; i < arr.length; i++) {
-      if (arr[i] == target && ans[0] == -1) {
-        ans[0] = i;
-        ans[1] = i;
-      } else if (arr[i] == target) {
-        ans[1] = i;
-      }
+   
+   public static String countAndSay(int n) {
+    String ans = "1";
+    // String str = "1";
+    for (int i = 0; i <n; i++) {
+      ans= RLE(ans);
     }
+  
     return ans;
   }
 
+  public static String RLE(String str) {
+    StringBuilder ans =  new StringBuilder();
+    int count = 1;
+    for(int i= 1; i<=str.length(); i++){
+      if(i<str.length() && str.charAt(i) == str.charAt( i -1)){
+        count++;
+        // System.out.println(count);
+      }else{
+        ans.append(count).append(str.charAt(i-1));
+        count = 1;
+      }
+    }
+    return ans.toString();
+  }
   public static void main(String[] args) {
-       
+     
+
+    String value = countAndSay(4);
+    // String value = RLE("11");
+    System.out.println(value);
   }
 
 }
