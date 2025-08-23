@@ -86,12 +86,21 @@ public class Code {
       System.out.println(str.toString());
    }
 
+   public static int divide(int dividend, int divisor) {
+      if (dividend == Integer.MIN_VALUE && divisor == -1) {
+         return Integer.MAX_VALUE; 
+      }
+
+      int ans = dividend / divisor;
+
+      return ans;
+   }
+
    public static void main(String[] args) {
       int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-      // List<List<Integer>> value = pairSum(arr, 10);
-      StringBuffer va = new StringBuffer("trRr");
-      changeCase(va);
+    
       // System.out.println(value);
+      System.out.println(divide(-2147483648, -1));
    }
 
 }
