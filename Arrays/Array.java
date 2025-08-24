@@ -1800,35 +1800,53 @@ public class Array {
 
   // }
    
-   public static String countAndSay(int n) {
-    String ans = "1";
-    // String str = "1";
-    for (int i = 0; i <n; i++) {
-      ans= RLE(ans);
-    }
+  //  public static String countAndSay(int n) {
+  //   String ans = "1";
+  //   // String str = "1";
+  //   for (int i = 0; i <n; i++) {
+  //     ans= RLE(ans);
+  //   }
   
+  //   return ans;
+  // }
+
+  // public static String RLE(String str) {
+  //   StringBuilder ans =  new StringBuilder();
+  //   int count = 1;
+  //   for(int i= 1; i<=str.length(); i++){
+  //     if(i<str.length() && str.charAt(i) == str.charAt( i -1)){
+  //       count++;
+  //       // System.out.println(count);
+  //     }else{
+  //       ans.append(count).append(str.charAt(i-1));
+  //       count = 1;
+  //     }
+  //   }
+  //   return ans.toString();
+  // }
+
+  public static int firstMissingPositive(int[] arr) {
+    Arrays.sort(arr);
+    int ans = 1;
+    for (int i = 0; i < arr.length; i++) {
+
+      if (arr[i] < ans)
+        continue;
+
+      if (arr[i] == ans) {
+        ans++;
+      } else if (arr[i] > ans) {
+        return ans;
+      }
+    }
+
     return ans;
   }
 
-  public static String RLE(String str) {
-    StringBuilder ans =  new StringBuilder();
-    int count = 1;
-    for(int i= 1; i<=str.length(); i++){
-      if(i<str.length() && str.charAt(i) == str.charAt( i -1)){
-        count++;
-        // System.out.println(count);
-      }else{
-        ans.append(count).append(str.charAt(i-1));
-        count = 1;
-      }
-    }
-    return ans.toString();
-  }
-  public static void main(String[] args) {
-     
 
-    String value = countAndSay(4);
-    // String value = RLE("11");
+  public static void main(String[] args) {
+     int[] arr = { 1, 2, 0};
+    int value = firstMissingPositive(arr);
     System.out.println(value);
   }
 
