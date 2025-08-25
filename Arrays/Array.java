@@ -1781,73 +1781,139 @@ public class Array {
   // }
 
   // public static String reverseString(String str) {
-  //   String arr[] = str.split(" ");
-  //   int n = arr.length - 1;
-  //   for (int i = 0; i < arr.length  / 2 ; i++) {
-  //     String temp = arr[i];
-  //     arr[i] = arr[n];
-  //     arr[n] = temp;
-  //     n--;
-  //   }
+  // String arr[] = str.split(" ");
+  // int n = arr.length - 1;
+  // for (int i = 0; i < arr.length / 2 ; i++) {
+  // String temp = arr[i];
+  // arr[i] = arr[n];
+  // arr[n] = temp;
+  // n--;
+  // }
 
-  //   String ans = "";
+  // String ans = "";
 
-  //   for (int i = 0; i < arr.length; i++) {
-  //     ans = ans + arr[i] + " ";
-  //   }
+  // for (int i = 0; i < arr.length; i++) {
+  // ans = ans + arr[i] + " ";
+  // }
 
-  //   return ans;
+  // return ans;
 
   // }
-   
-  //  public static String countAndSay(int n) {
-  //   String ans = "1";
-  //   // String str = "1";
-  //   for (int i = 0; i <n; i++) {
-  //     ans= RLE(ans);
-  //   }
-  
-  //   return ans;
+
+  // public static String countAndSay(int n) {
+  // String ans = "1";
+  // // String str = "1";
+  // for (int i = 0; i <n; i++) {
+  // ans= RLE(ans);
+  // }
+
+  // return ans;
   // }
 
   // public static String RLE(String str) {
-  //   StringBuilder ans =  new StringBuilder();
-  //   int count = 1;
-  //   for(int i= 1; i<=str.length(); i++){
-  //     if(i<str.length() && str.charAt(i) == str.charAt( i -1)){
-  //       count++;
-  //       // System.out.println(count);
-  //     }else{
-  //       ans.append(count).append(str.charAt(i-1));
-  //       count = 1;
-  //     }
-  //   }
-  //   return ans.toString();
+  // StringBuilder ans = new StringBuilder();
+  // int count = 1;
+  // for(int i= 1; i<=str.length(); i++){
+  // if(i<str.length() && str.charAt(i) == str.charAt( i -1)){
+  // count++;
+  // // System.out.println(count);
+  // }else{
+  // ans.append(count).append(str.charAt(i-1));
+  // count = 1;
+  // }
+  // }
+  // return ans.toString();
   // }
 
-  public static int firstMissingPositive(int[] arr) {
-    Arrays.sort(arr);
-    int ans = 1;
-    for (int i = 0; i < arr.length; i++) {
+  // public static int firstMissingPositive(int[] arr) {
+  // Arrays.sort(arr);
+  // int ans = 1;
+  // for (int i = 0; i < arr.length; i++) {
 
-      if (arr[i] < ans)
-        continue;
+  // if (arr[i] < ans)
+  // continue;
 
-      if (arr[i] == ans) {
-        ans++;
-      } else if (arr[i] > ans) {
-        return ans;
-      }
-    }
+  // if (arr[i] == ans) {
+  // ans++;
+  // } else if (arr[i] > ans) {
+  // return ans;
+  // }
+  // }
 
-    return ans;
-  }
+  // return ans;
+  // }
 
+  // public static List<Integer> sortedArray(int[] a, int[] b) {
+  // // Write your code here
+  // int n = a.length;
+  // int m = b.length;
+  // List<Integer> list = new ArrayList<>();
+  // int i = 0;
+  // int j = 0;
+  // while (i < n && j < m) {
+  // if (a[i] <= b[j]) {
+  // list.add(a[i]);
+  // i++;
+  // } else {
+  // list.add(b[j]);
+  // j++;
+  // }
+  // }
+
+  // while (i < n) {
+  // list.add(a[i]);
+  // i++;
+  // }
+
+  // // add leftovers from b
+  // while (j < m) {
+  // list.add(b[j]);
+  // j++;
+  // }
+
+  // return list;
+  // }
+
+  public static int[] findArraySum(int[] a, int n, int[] b, int m) {
+		// Write your code here.
+
+		String val1 = "";
+        int data1 = 0;
+		for(int i=0; i<n; i++){
+			val1 = val1 + a[i];
+		}
+
+		data1  = Integer.parseInt(val1);
+
+		String val2 = "";
+		int data2 = 0;
+		for(int i=0; i<m; i++){
+			val2 = val2 + b[i];
+		}
+
+		data2 = Integer.parseInt(val2);
+
+    int data = data1 + data2;
+
+		String res  = "";
+    res = res + data;
+
+		int arr[] = new int[res.length()];
+		for(int i=0; i< arr.length; i++){
+			arr[i] = res.charAt(i) - '0';
+		}
+
+		return arr;
+ 
+	}
 
   public static void main(String[] args) {
-     int[] arr = { 1, 2, 0};
-    int value = firstMissingPositive(arr);
-    System.out.println(value);
+    int[] arr = { 1, 2, 3 };
+    int[] arr1 = { 2, 3, 6 };
+    int[] ar = findArraySum(arr,3,arr1,3);
+    for (int i = 0; i < ar.length; i++) {
+      System.out.println(ar[i]);
+    }
   }
 
 }
