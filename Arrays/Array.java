@@ -1907,35 +1907,54 @@ public class Array {
 
   // }
 
-  public static String addBinary(String a, String b) {
-    StringBuilder sb = new StringBuilder();
-    int i = a.length() - 1;
-    int j = b.length() - 1;
-    int carry = 0;
+  // public static String addBinary(String a, String b) {
+  //   StringBuilder sb = new StringBuilder();
+  //   int i = a.length() - 1;
+  //   int j = b.length() - 1;
+  //   int carry = 0;
 
-    while (i >= 0 || j >= 0 || carry > 0) {
-      int sum = carry;
+  //   while (i >= 0 || j >= 0 || carry > 0) {
+  //     int sum = carry;
 
-      if (i >= 0) {
-        sum += a.charAt(i) - '0';
-        i--;
-      }
-      if (j >= 0) {
-        sum += b.charAt(j) - '0';
-        j--;
-      }
+  //     if (i >= 0) {
+  //       sum += a.charAt(i) - '0';
+  //       i--;
+  //     }
+  //     if (j >= 0) {
+  //       sum += b.charAt(j) - '0';
+  //       j--;
+  //     }
 
-      sb.append(sum % 2); 
-      carry = sum / 2;
+  //     sb.append(sum % 2); 
+  //     carry = sum / 2;
 
-    return sb.reverse().toString();
-  }
+  //   return sb.reverse().toString();
+  // }
+  
+  public static ArrayList<Integer> rotateArray(ArrayList<Integer> arr, int k) {
+        // Write your code here.
+        ArrayList<Integer> ans = new ArrayList<>();
+        int i=0;
+        while(i+k < arr.size()){
+            ans.add(arr.get(i + k));
+            i++;
+        }
+        int j = 0;
+        while(j<k){
+            ans.add(arr.get(j));
+            i++;
+            j++;
+        }
+
+        return ans;
+    }
+
 
   public static void main(String[] args) {
-    int[] arr = { 1, 2, 3 };
-    int[] arr1 = { 2, 3, 6 , 7};
-    String  value  = addBinary("11","1");
-    System.out.println(value);
+    
+    ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,8));
+    
+    System.out.println(rotateArray(arr, 2));
   }
 
 }
