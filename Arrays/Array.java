@@ -1931,30 +1931,39 @@ public class Array {
   //   return sb.reverse().toString();
   // }
   
-  public static ArrayList<Integer> rotateArray(ArrayList<Integer> arr, int k) {
-        // Write your code here.
-        ArrayList<Integer> ans = new ArrayList<>();
-        int i=0;
-        while(i+k < arr.size()){
-            ans.add(arr.get(i + k));
-            i++;
-        }
-        int j = 0;
-        while(j<k){
-            ans.add(arr.get(j));
-            i++;
-            j++;
-        }
+  // public static ArrayList<Integer> rotateArray(ArrayList<Integer> arr, int k) {
+  //       // Write your code here.
+  //       ArrayList<Integer> ans = new ArrayList<>();
+  //       int i=0;
+  //       while(i+k < arr.size()){
+  //           ans.add(arr.get(i + k));
+  //           i++;
+  //       }
+  //       int j = 0;
+  //       while(j<k){
+  //           ans.add(arr.get(j));
+  //           i++;
+  //           j++;
+  //       }
 
-        return ans;
+  //       return ans;
+  //   }
+ 
+
+  public static int singleNonDuplicate(int[] arr) {
+    int xor = 0;
+    for (int num : arr) {
+      xor ^= num;
     }
-
+    return xor;
+  }
 
   public static void main(String[] args) {
     
-    ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,8));
+    ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(1,1,2,2,5,6,6));
+    int[] a = {1,1,2,2,5,6,6};
     
-    System.out.println(rotateArray(arr, 2));
+    System.out.println(singleNonDuplicate(a));
   }
 
 }
