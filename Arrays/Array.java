@@ -1976,39 +1976,52 @@ public class Array {
   //   return -1;
   // }
 
-  public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+  // public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+  //   // Write your code here
+  //   int[] ans = new int[2];
+  //   Collections.sort(arr);
+
+  //   int repeatingNum = 0;
+  //   int missingNum = 0;
+
+  //   // Find repeating number
+  //   for (int i = 1; i < n; i++) {
+  //     if (arr.get(i) == arr.get(i - 1)) {
+  //       repeatingNum = arr.get(i);
+  //       break;
+  //     }
+  //   }
+
+   // // Find missing number using formula
+  //   int expectedSum = n * (n + 1) / 2;
+  //   int actualSum = 0;
+  //   for (int x : arr)
+  //     actualSum += x;
+
+  //   // Missing = expected - (actual - repeating)
+  //   missingNum = expectedSum - (actualSum - repeatingNum);
+
+  //   ans[0] = missingNum;
+  //   ans[1] = repeatingNum;
+  //   return ans;
+  // }
+   public static int[] Klargest(int[] a, int k, int n) {
     // Write your code here
-    int[] ans = new int[2];
-    Collections.sort(arr);
 
-    int repeatingNum = 0;
-    int missingNum = 0;
-
-    // Find repeating number
-    for (int i = 1; i < n; i++) {
-      if (arr.get(i) == arr.get(i - 1)) {
-        repeatingNum = arr.get(i);
-        break;
-      }
+    Arrays.sort(a);
+    int ans[] = new int[k];
+    int j = 0;
+    for (int i = n - k; i < n; i++) {
+      ans[j] = a[i];
+      j++;
     }
-
-    // Find missing number using formula
-    int expectedSum = n * (n + 1) / 2;
-    int actualSum = 0;
-    for (int x : arr)
-      actualSum += x;
-
-    // Missing = expected - (actual - repeating)
-    missingNum = expectedSum - (actualSum - repeatingNum);
-
-    ans[0] = missingNum;
-    ans[1] = repeatingNum;
     return ans;
   }
 
+
   public static void main(String[] args) {
-     ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(3, 1, 3));
-    int[] ans  = missingAndRepeating(arr, 3);
+   int []arr = {1,2,34,5,6,7};
+    int[] ans  = Klargest(arr, 3 ,6);
    
   }
 
