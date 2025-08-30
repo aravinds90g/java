@@ -1950,20 +1950,36 @@ public class Array {
   //   }
  
 
-  public static int singleNonDuplicate(int[] arr) {
-    int xor = 0;
-    for (int num : arr) {
-      xor ^= num;
-    }
-    return xor;
-  }
+  // public static int singleNonDuplicate(int[] arr) {
+  //   int xor = 0;
+  //   for (int num : arr) {
+  //     xor ^= num;
+  //   }
+  //   return xor;
+  // }
+
+  // public static int firstUniqChar(String s) {
+  //   HashMap<Character, Integer> map = new HashMap<>();
+  //   HashMap<Character, Integer> mp = new HashMap<>();
+  //   for (int i = 0; i < s.length(); i++) {
+  //     map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+  //     if (!mp.containsKey(s.charAt(i)))
+  //       mp.put(s.charAt(i), i);
+  //   }
+  //  System.out.println(map);
+  //   for (int i=0; i<s.length(); i++) {
+  //     if(map.get(s.charAt(i)) == 1){
+  //       return mp.get(s.charAt(i));
+  //     }
+  //   }
+
+  //   return -1;
+  // }
 
   public static void main(String[] args) {
     
-    ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(1,1,2,2,5,6,6));
-    int[] a = {1,1,2,2,5,6,6};
-    
-    System.out.println(singleNonDuplicate(a));
+   int value = firstUniqChar("leetcode");
+   System.out.println(value);
   }
 
 }
