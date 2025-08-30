@@ -1976,10 +1976,40 @@ public class Array {
   //   return -1;
   // }
 
+  public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+    // Write your code here
+    int[] ans = new int[2];
+    Collections.sort(arr);
+
+    int repeatingNum = 0;
+    int missingNum = 0;
+
+    // Find repeating number
+    for (int i = 1; i < n; i++) {
+      if (arr.get(i) == arr.get(i - 1)) {
+        repeatingNum = arr.get(i);
+        break;
+      }
+    }
+
+    // Find missing number using formula
+    int expectedSum = n * (n + 1) / 2;
+    int actualSum = 0;
+    for (int x : arr)
+      actualSum += x;
+
+    // Missing = expected - (actual - repeating)
+    missingNum = expectedSum - (actualSum - repeatingNum);
+
+    ans[0] = missingNum;
+    ans[1] = repeatingNum;
+    return ans;
+  }
+
   public static void main(String[] args) {
-    
-   int value = firstUniqChar("leetcode");
-   System.out.println(value);
+     ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(3, 1, 3));
+    int[] ans  = missingAndRepeating(arr, 3);
+   
   }
 
 }
