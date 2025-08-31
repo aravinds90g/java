@@ -2005,23 +2005,42 @@ public class Array {
   //   ans[1] = repeatingNum;
   //   return ans;
   // }
-   public static int[] Klargest(int[] a, int k, int n) {
-    // Write your code here
+  //  public static int[] Klargest(int[] a, int k, int n) {
+  //   // Write your code here
 
-    Arrays.sort(a);
-    int ans[] = new int[k];
-    int j = 0;
-    for (int i = n - k; i < n; i++) {
-      ans[j] = a[i];
-      j++;
-    }
-    return ans;
-  }
+  //   Arrays.sort(a);
+  //   int ans[] = new int[k];
+  //   int j = 0;
+  //   for (int i = n - k; i < n; i++) {
+  //     ans[j] = a[i];
+  //     j++;
+  //   }
+  //   return ans;
+  // }
+
+
+  public static boolean checkPalindrome(String str) {
+	
+		String s = str.replaceAll("[^A-Za-z]","").toLowerCase();
+		int n = s.length() - 1;
+        int i=0;
+		while(i<n){
+			if(s.charAt(i) != s.charAt(n)){
+				return false;
+			}
+			i++;
+			n--;
+		}
+
+		return true;
+	 
+	}
 
 
   public static void main(String[] args) {
-   int []arr = {1,2,34,5,6,7};
-    int[] ans  = Klargest(arr, 3 ,6);
+   
+    boolean value = checkPalindrome("A1b22Ba");
+    System.out.println(value);
    
   }
 
