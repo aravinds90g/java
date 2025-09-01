@@ -2019,27 +2019,49 @@ public class Array {
   // }
 
 
-  public static boolean checkPalindrome(String str) {
+  // public static boolean checkPalindrome(String str) {
 	
-		String s = str.replaceAll("[^A-Za-z]","").toLowerCase();
-		int n = s.length() - 1;
-        int i=0;
-		while(i<n){
-			if(s.charAt(i) != s.charAt(n)){
-				return false;
-			}
-			i++;
-			n--;
-		}
+	// 	String s = str.replaceAll("[^A-Za-z]","").toLowerCase();
+	// 	int n = s.length() - 1;
+  //       int i=0;
+	// 	while(i<n){
+	// 		if(s.charAt(i) != s.charAt(n)){
+	// 			return false;
+	// 		}
+	// 		i++;
+	// 		n--;
+	// 	}
 
-		return true;
+	// 	return true;
 	 
-	}
+	// }
+
+    public static int getLongestSubarray(int[] arr, int k) {
+      int sum = 0;
+      int i = 0;
+      int j = 0;
+      int maxLen = 0;
+      while (i < arr.length) {
+        sum += arr[i];
+        while (sum > k && j<=i) {
+          sum -= arr[j];
+          j++;
+        }
+        if(sum == k){
+          maxLen = Math.max(maxLen, i-j + 1);
+        }
+
+        i++;
+
+      }
+
+      return maxLen;
+    }
 
 
   public static void main(String[] args) {
-   
-    boolean value = checkPalindrome("A1b22Ba");
+    int arr [] = {-50,0, 52}; 
+    int value = getLongestSubarray(arr, 2);
     System.out.println(value);
    
   }

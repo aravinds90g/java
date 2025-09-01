@@ -121,6 +121,13 @@ public class LinkedList {
 
     }
 
+    public static Node insertNode (Node head, int data){
+        Node temp = null;
+        temp.data = data;
+        temp.next = head;
+        return temp;
+    }
+
     public static void main(String[] args) {
 
         int[] arr = { 1, 2, 3, 4, 5 , 8 };
@@ -135,8 +142,10 @@ public class LinkedList {
         
         // head = removePositionNode(head, 2);
         
-        head = deleteValue(head, 6);
+        head = deleteValue(head, 8);
         Node temp = head;
+
+        head = insertNode(head, 2);
 
         while (temp != null) {
             System.out.print(temp.data + " ");
