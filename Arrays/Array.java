@@ -2036,32 +2036,41 @@ public class Array {
 	 
 	// }
 
-    public static int getLongestSubarray(int[] arr, int k) {
-      int sum = 0;
+   
+  
+    public static int myAtoi(String s) {
+      String str = s.trim();
+      if (str.length() < 1) {
+        return 0;
+      }
+      long num = 0;
       int i = 0;
-      int j = 0;
-      int maxLen = 0;
-      while (i < arr.length) {
-        sum += arr[i];
-        while (sum > k && j<=i) {
-          sum -= arr[j];
-          j++;
-        }
-        if(sum == k){
-          maxLen = Math.max(maxLen, i-j + 1);
-        }
-
+      int sign = 1;
+      if (str.charAt(i) == '-' || str.charAt(i) == '+') {
+        sign = str.charAt(i) == '-' ? -1 : 1;
         i++;
-
       }
 
-      return maxLen;
+      while (i < str.length() && Character.isDigit(str.charAt(i))) {
+        num = num * 10 + str.charAt(i) - '0';
+
+        if (num * sign > Integer.MAX_VALUE) {
+          return Integer.MAX_VALUE;
+        }
+        if (num * sign < Integer.MIN_VALUE) {
+          return Integer.MIN_VALUE;
+        }
+        i++;
+      }
+
+      return (int) num * sign;
     }
+
 
 
   public static void main(String[] args) {
     int arr [] = {-50,0, 52}; 
-    int value = getLongestSubarray(arr, 2);
+    int value = myAtoi("-00042");
     System.out.println(value);
    
   }
