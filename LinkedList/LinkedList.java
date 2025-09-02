@@ -52,13 +52,12 @@ public class LinkedList {
     }
 
     public static Node deleteValue(Node head, int target) {
-        if(head == null) return null;
-
+        if (head == null)
+            return null;
 
         if (head.data == target) {
             return head.next;
         }
-
 
         Node temp = head;
 
@@ -70,7 +69,6 @@ public class LinkedList {
             temp = temp.next;
         }
 
-       
         return head;
     }
 
@@ -121,31 +119,121 @@ public class LinkedList {
 
     }
 
-    public static Node insertNode (Node head, int data){
-        Node temp = null;
-        temp.data = data;
-        temp.next = head;
-        return temp;
+    public static Node insertHead(Node head, int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+        return head;
     }
+
+    public static Node insertTail(Node head, int data) {
+        if (head == null || head.next == null)
+            return null;
+
+        Node temp = head.next;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        Node newNode = new Node(data);
+
+        temp.next = newNode;
+        return head;
+    }
+
+    public static Node insertKthNode(Node head, int data, int k) {
+
+        if (k==1) {
+            return insertHead(head, data);
+        }
+        int count = 1;
+        Node temp = head;
+        
+        while (temp != null) {
+
+            if(count == k-1) break;
+            temp = temp.next;
+            count++;
+        }
+
+        if (temp != null) {
+            Node newNode = new Node(data);
+            newNode.next = temp.next; // link newNode to next node
+            temp.next = newNode; // link previous node to newNode
+        } else {
+            System.out.println("Position out of range");
+        }
+
+        return head;
+    }
+
+
+    public static void insertNextNode(Node node , int data){
+         Node newNode = new Node(data);
+        
+         newNode.next = node.next;
+         node.next = newNode;
+    
+        
+    }
+
+    public static Node middleNode(Node head) {
+        int count = 0;
+        if (head == null) {
+            return null;
+        }
+        Node temp = head;
+
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+
+        int mid = count / 2;
+        
+
+        System.out.println(mid);
+        int i = 0;
+        temp = head;
+        while (temp != null & i <= mid) {
+
+            if (i == mid) {
+                head = temp;
+                return head;
+            }
+           temp = temp.next;
+            i++;
+        }
+        return head;
+    }
+  
+
+     
+
 
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2, 3, 4, 5 , 8 };
+        int[] arr = { 1, 2, 3, 4, 5};
         // Node y = new Node(3);
         // System.out.println(y.next);
         Node head = convertArraytoLinkedList(arr);
 
         // System.out.println(lengthOfLinkedList(head));
-        
+
         // head = removeHead(head);
         // head = removetail(head);
-        
-        // head = removePositionNode(head, 2);
-        
-        head = deleteValue(head, 8);
-        Node temp = head;
 
-        head = insertNode(head, 2);
+        // head = removePositionNode(head, 2);
+
+        // head = deleteValue(head, 8);
+        // head = insertTail(head, 9);
+
+        // head = insertKthNode(head, 10, 7);
+        // insertNextNode(head.next.next.next ,4);
+
+        head = middleNode(head);
+
+
+        Node temp = head;
 
         while (temp != null) {
             System.out.print(temp.data + " ");
