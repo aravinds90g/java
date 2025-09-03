@@ -142,15 +142,16 @@ public class LinkedList {
 
     public static Node insertKthNode(Node head, int data, int k) {
 
-        if (k==1) {
+        if (k == 1) {
             return insertHead(head, data);
         }
         int count = 1;
         Node temp = head;
-        
+
         while (temp != null) {
 
-            if(count == k-1) break;
+            if (count == k - 1)
+                break;
             temp = temp.next;
             count++;
         }
@@ -166,14 +167,12 @@ public class LinkedList {
         return head;
     }
 
+    public static void insertNextNode(Node node, int data) {
+        Node newNode = new Node(data);
 
-    public static void insertNextNode(Node node , int data){
-         Node newNode = new Node(data);
-        
-         newNode.next = node.next;
-         node.next = newNode;
-    
-        
+        newNode.next = node.next;
+        node.next = newNode;
+
     }
 
     public static Node middleNode(Node head) {
@@ -189,7 +188,6 @@ public class LinkedList {
         }
 
         int mid = count / 2;
-        
 
         System.out.println(mid);
         int i = 0;
@@ -200,22 +198,80 @@ public class LinkedList {
                 head = temp;
                 return head;
             }
-           temp = temp.next;
+            temp = temp.next;
             i++;
         }
         return head;
     }
-  
 
-     
+    public static Node mergeSortedNode(Node head1, Node head2) {
 
+        if (head1 == null)
+            return head2;
+        if (head2 == null)
+            return head1;
+
+
+        Node head = null;
+        Node temp1 = head1;
+        Node temp2 = head2;
+
+        if (head1.data <= head2.data) {
+            head = new Node(head1.data);
+            temp1 = head1.next;
+        } else {
+            head = new Node(head2.data);
+            temp2 = head2.next;
+        }
+
+        Node temp = head;
+
+        while (temp1 != null && temp2 != null) {
+            if (temp1.data < temp2.data) {
+                Node newNode = new Node(temp1.data);
+                temp.next = newNode;
+                temp1 = temp1.next;
+            } else if (temp1.data > temp2.data) {
+                Node newNode = new Node(temp2.data);
+                temp.next = newNode;
+
+                temp2 = temp2.next;
+            } else {
+                Node newNode = new Node(temp1.data);
+                temp.next = newNode;
+
+                temp1 = temp1.next;
+                temp2 = temp2.next;
+            }
+            temp = temp.next;
+        }
+
+        while (temp1 != null) {
+            Node newNode = new Node(temp1.data);
+            temp.next = newNode;
+
+            temp1 = temp1.next;
+            temp = temp.next;
+        }
+
+        while (temp2 != null) {
+            Node newNode = new Node(temp2.data);
+            temp.next = newNode;
+           temp =temp.next;
+            temp2 = temp2.next;
+        }
+
+        return head;
+    }
 
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2, 3, 4, 5};
+        int[] arr = { 1,  };
+        int[] arr2 = {  2 };
         // Node y = new Node(3);
         // System.out.println(y.next);
-        Node head = convertArraytoLinkedList(arr);
+        Node head1 = convertArraytoLinkedList(arr);
+        Node head2 = convertArraytoLinkedList(arr2);
 
         // System.out.println(lengthOfLinkedList(head));
 
@@ -230,10 +286,11 @@ public class LinkedList {
         // head = insertKthNode(head, 10, 7);
         // insertNextNode(head.next.next.next ,4);
 
-        head = middleNode(head);
+        // head = middleNode(head);
 
+        // Node temp = head;
 
-        Node temp = head;
+        Node temp = mergeSortedNode(head1, head2);
 
         while (temp != null) {
             System.out.print(temp.data + " ");
