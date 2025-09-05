@@ -264,9 +264,24 @@ public class LinkedList {
         return head;
     }
 
+
+    public static Node reverseList(Node head) {
+        Node temp = head;
+        Node pre = null;
+
+        while (temp != null) {
+            Node front = temp.next;
+            temp.next = pre;
+            pre = temp;
+            temp = front;
+        }
+
+        return pre;
+    }
+
     public static void main(String[] args) {
 
-        int[] arr = { 1,  };
+        int[] arr = { 1, 2,3,5,68,8,899,0 };
         int[] arr2 = {  2 };
         // Node y = new Node(3);
         // System.out.println(y.next);
@@ -291,6 +306,8 @@ public class LinkedList {
         // Node temp = head;
 
         Node temp = mergeSortedNode(head1, head2);
+       temp = reverseList(temp);
+        
 
         while (temp != null) {
             System.out.print(temp.data + " ");
