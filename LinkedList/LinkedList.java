@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.HashMap;
+
 class Node {
     int data;
     Node next;
@@ -278,6 +280,29 @@ public class LinkedList {
 
         return pre;
     }
+
+    public static Node removeLoop(Node head) {
+   
+    HashMap<Node, Integer> map = new HashMap<>();
+
+    Node temp = head;
+    Node pre = null;
+
+    while(temp.next != null){
+
+      if(map.containsKey(temp)){
+        pre.next =  null; 
+        break;
+      }
+      map.put(temp, map.getOrDefault(temp,0)+1);
+
+      pre = temp;
+      temp = temp.next;
+    }
+
+    return head;
+
+  }
 
     public static void main(String[] args) {
 
