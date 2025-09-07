@@ -102,14 +102,9 @@ public class DoublyLL {
     }
 
     public static void insertTail(Node head, int data) {
-        Node temp = head;
+        Node temp = head;   
 
-        if (temp.next == null) {
-            Node newNode = new Node(data);
-            temp.next = newNode;
-        }
-
-        while (temp.next.next != null) {
+        while (temp.next != null) {
             temp = temp.next;
         }
 
@@ -117,36 +112,59 @@ public class DoublyLL {
 
         temp.next = newNode;
         newNode.next = null;
+        newNode.back = temp;
 
     }
 
     public static Node insertNode(Node head, int data, int k) {
-        Node temp = head;
-        int count = 0;
-
         if (k == 1) {
-          head = insertHead(head, data);
-            return head;
+            return insertHead(head, data);
         }
 
-        while (temp.next != null) {
-            count++;
-            if (count == k) {
-                break;
-            }
+        Node temp = head;
+        int count = 1;
+
+        while (temp != null && count < k) {
             temp = temp.next;
+            count++;
         }
-        
-        if(count < k){
+
+        // If k is greater than length + 1 → insert at tail
+        if (temp == null) {
             insertTail(head, data);
             return head;
         }
-        Node pre = temp.back;
+
         Node newNode = new Node(data);
+        Node pre = temp.back;
+
+        // Fix connections
         pre.next = newNode;
+        newNode.back = pre;
         newNode.next = temp;
+        temp.back = newNode;
 
         return head;
+
+    }
+
+
+
+   
+
+    public static Node reverseDLL(Node head){
+        Node temp = head;
+
+        Node pre = null;
+
+        while (temp != null) {
+             pre = temp.back;
+            temp.back = temp.next;
+            temp.next = pre;
+            temp = temp.back;
+        }
+
+        return pre.back;
 
     }
 
@@ -155,13 +173,15 @@ public class DoublyLL {
         Node head = convertToDLL(arr);
 
         // head = removeHead(head);
-        // head = removeTail(head);
+        // head = removeTail(head); 
 
         // removeNode(head.next.next.next);
 
         // head = insertHead(head, 999);
 
        head = insertNode(head, 888, 44);
+
+       head = reverseDLL(head);
 
         Node temp = head;
         while (temp != null) {
