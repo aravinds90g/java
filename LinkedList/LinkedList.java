@@ -304,6 +304,29 @@ public class LinkedList {
 
   }
 
+
+  public static Node detectCycle(Node head) {
+      Node slow = head;
+      Node fast = head;
+      // boolean foundPoint = false;
+      while (fast != null && fast.next != null) {
+          slow = slow.next;
+
+          fast = fast.next.next;
+
+          if (slow == fast) {
+              slow = head;
+              while (slow != fast) {
+                  slow = slow.next;
+                  fast = fast.next;
+              }
+              return slow;
+          }
+      }
+
+      return null;
+  }
+
     public static void main(String[] args) {
 
         int[] arr = { 1, 2,3,5,68,8,899,0 };
