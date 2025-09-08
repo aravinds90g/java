@@ -401,6 +401,32 @@ public class LinkedList {
      return head;
      
   }
+
+
+   public static Node groupLLV2 (Node head){
+      Node odd = head; 
+      Node even = head.next;
+      Node evenHead = even;
+      
+      while (even != null && even.next !=  null) {
+        odd.next = odd.next.next;
+        even.next = even.next.next;
+
+        odd = odd.next;
+        even = even.next;
+      }
+      
+      odd.next = evenHead;
+
+      return head;
+
+   }
+
+
+
+   
+
+
     public static void main(String[] args) {
 
         int[] arr = { 1, 2,3,2,1 ,4 };
@@ -427,7 +453,7 @@ public class LinkedList {
 
         // Node temp = head;
         // System.out.println(isPalindrome(head));
-        head = groupLL(head);
+        head = groupLLV2(head);
         Node temp = head;
         
 
