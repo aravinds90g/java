@@ -1,6 +1,9 @@
 package LinkedList;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
 
 class Node {
     int data;
@@ -268,6 +271,9 @@ public class LinkedList {
 
 
     public static Node reverseList(Node head) {
+        if(head == null || head.next == null){
+            return head;
+        }
         Node temp = head;
         Node pre = null;
 
@@ -327,14 +333,82 @@ public class LinkedList {
       return null;
   }
 
+  public static boolean isPalindrome(Node head){
+      Stack<Integer> stack = new Stack<>();
+
+      Node temp = head;
+
+      while (temp != null ) {
+        stack.push(temp.data);
+        temp = temp.next;
+      }
+
+    //   System.out.println(stack);
+    temp = head;
+    while (temp != null) {
+        if(temp.data != stack.peek()){
+            return false;
+        }
+        stack.pop();
+        temp = temp.next;
+    }
+      return true;
+  }
+  
+
+  public static Node groupLL (Node head){
+
+      if (head == null || head.next == null)
+          return head;
+
+
+     Node temp = head;
+     List<Integer> list = new ArrayList<>();
+    //  list.add(temp.data);
+     while (temp != null) {
+        list.add(temp.data);
+
+        if(temp.next != null){
+           temp = temp.next.next;
+        }else{
+            break;
+        }
+     }
+
+
+     temp = head.next;
+
+     while (temp != null) {
+         list.add(temp.data);
+
+         if (temp.next != null) {
+             temp = temp.next.next;
+         } else {
+             break;
+         }
+     }
+
+     temp = head;
+    //  System.out.println(list);
+     
+     int i= 0;
+     while (temp != null) {
+        temp.data = list.get(i);
+        temp = temp.next;
+        i++;
+     }
+
+     return head;
+     
+  }
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2,3,5,68,8,899,0 };
-        int[] arr2 = {  2 };
+        int[] arr = { 1, 2,3,2,1 ,4 };
+        // int[] arr2 = {  2 };
         // Node y = new Node(3);
         // System.out.println(y.next);
-        Node head1 = convertArraytoLinkedList(arr);
-        Node head2 = convertArraytoLinkedList(arr2);
+        Node head = convertArraytoLinkedList(arr);
+        // Node head2 = convertArraytoLinkedList(arr2);
 
         // System.out.println(lengthOfLinkedList(head));
 
@@ -352,9 +426,9 @@ public class LinkedList {
         // head = middleNode(head);
 
         // Node temp = head;
-
-        Node temp = mergeSortedNode(head1, head2);
-       temp = reverseList(temp);
+        // System.out.println(isPalindrome(head));
+        head = groupLL(head);
+        Node temp = head;
         
 
         while (temp != null) {
