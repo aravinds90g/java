@@ -180,7 +180,7 @@ public class LinkedList {
 
     }
 
-    public static Node middleNode(Node head) {
+    public static Node middleNode1(Node head) {
         int count = 0;
         if (head == null) {
             return null;
@@ -215,7 +215,6 @@ public class LinkedList {
             return head2;
         if (head2 == null)
             return head1;
-
 
         Node head = null;
         Node temp1 = head1;
@@ -262,16 +261,15 @@ public class LinkedList {
         while (temp2 != null) {
             Node newNode = new Node(temp2.data);
             temp.next = newNode;
-           temp =temp.next;
+            temp = temp.next;
             temp2 = temp2.next;
         }
 
         return head;
     }
 
-
     public static Node reverseList(Node head) {
-        if(head == null || head.next == null){
+        if (head == null || head.next == null) {
             return head;
         }
         Node temp = head;
@@ -288,152 +286,235 @@ public class LinkedList {
     }
 
     public static Node removeLoop(Node head) {
-   
-    HashMap<Node, Integer> map = new HashMap<>();
 
-    Node temp = head;
-    Node pre = null;
+        HashMap<Node, Integer> map = new HashMap<>();
 
-    while(temp.next != null){
+        Node temp = head;
+        Node pre = null;
 
-      if(map.containsKey(temp)){
-        pre.next =  null; 
-        break;
-      }
-      map.put(temp, map.getOrDefault(temp,0)+1);
+        while (temp.next != null) {
 
-      pre = temp;
-      temp = temp.next;
+            if (map.containsKey(temp)) {
+                pre.next = null;
+                break;
+            }
+            map.put(temp, map.getOrDefault(temp, 0) + 1);
+
+            pre = temp;
+            temp = temp.next;
+        }
+
+        return head;
+
     }
 
+    public static Node detectCycle(Node head) {
+        Node slow = head;
+        Node fast = head;
+        // boolean foundPoint = false;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                slow = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
+            }
+        }
+
+        return null;
+    }
+
+    public static boolean isPalindrome(Node head) {
+        Stack<Integer> stack = new Stack<>();
+
+        Node temp = head;
+
+        while (temp != null) {
+            stack.push(temp.data);
+            temp = temp.next;
+        }
+
+        // System.out.println(stack);
+        temp = head;
+        while (temp != null) {
+            if (temp.data != stack.peek()) {
+                return false;
+            }
+            stack.pop();
+            temp = temp.next;
+        }
+        return true;
+    }
+
+    public static Node groupLL(Node head) {
+
+        if (head == null || head.next == null)
+            return head;
+
+        Node temp = head;
+        List<Integer> list = new ArrayList<>();
+        // list.add(temp.data);
+        while (temp != null) {
+            list.add(temp.data);
+
+            if (temp.next != null) {
+                temp = temp.next.next;
+            } else {
+                break;
+            }
+        }
+
+        temp = head.next;
+
+        while (temp != null) {
+            list.add(temp.data);
+
+            if (temp.next != null) {
+                temp = temp.next.next;
+            } else {
+                break;
+            }
+        }
+
+        temp = head;
+        // System.out.println(list);
+
+        int i = 0;
+        while (temp != null) {
+            temp.data = list.get(i);
+            temp = temp.next;
+            i++;
+        }
+
+        return head;
+
+    }
+
+    public static Node groupLLV2(Node head) {
+        Node odd = head;
+        Node even = head.next;
+        Node evenHead = even;
+
+        while (even != null && even.next != null) {
+            odd.next = odd.next.next;
+            even.next = even.next.next;
+
+            odd = odd.next;
+            even = even.next;
+        }
+
+        odd.next = evenHead;
+
+        return head;
+
+    }
+
+    public static Node removeNthFromEnd(Node head, int n) {
+
+        if (n == 1 && head.next == null) {
+            return null;
+        }
+
+        Node fast = head;
+        Node slow = head;
+        // int count = 0;
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
+        }
+        if (fast == null) {
+            return head.next;
+        }
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+
+        return head;
+
+    }
+
+    public static Node middleNode(Node head) {
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+
+    }
+
+    public static Node mergeTwoLL(Node head1, Node head2) {
+        if (head1 == null)
+            return head2;
+        if (head2 == null)
+            return head1;
+
+        Node dummyNode = new Node(-1);
+
+        Node temp = dummyNode;
+        Node t1 = head1;
+        Node t2 = head2;
+        while (t1 != null && t2 != null) {
+            if (t1.data < t2.data) {
+                temp.next = t1;
+                temp = temp.next;
+                t1 = t1.next;
+            } else {
+                temp.next = t2;
+                temp = temp.next;
+                t2 = t2.next;
+            }
+        }
+
+        if (t1 != null) {
+            temp.next = t1;
+        }
+
+        if (t2 != null) {
+            temp.next = t2;
+        }
+
+        return dummyNode.next;
+
+    }
+
+    public static Node mergeSort(Node head){
+
+    if(head == null || head.next == null){
     return head;
-
-  }
-
-
-  public static Node detectCycle(Node head) {
-      Node slow = head;
-      Node fast = head;
-      // boolean foundPoint = false;
-      while (fast != null && fast.next != null) {
-          slow = slow.next;
-
-          fast = fast.next.next;
-
-          if (slow == fast) {
-              slow = head;
-              while (slow != fast) {
-                  slow = slow.next;
-                  fast = fast.next;
-              }
-              return slow;
-          }
-      }
-
-      return null;
-  }
-
-  public static boolean isPalindrome(Node head){
-      Stack<Integer> stack = new Stack<>();
-
-      Node temp = head;
-
-      while (temp != null ) {
-        stack.push(temp.data);
-        temp = temp.next;
-      }
-
-    //   System.out.println(stack);
-    temp = head;
-    while (temp != null) {
-        if(temp.data != stack.peek()){
-            return false;
-        }
-        stack.pop();
-        temp = temp.next;
     }
-      return true;
-  }
-  
 
-  public static Node groupLL (Node head){
+    Node mid = middleNode(head);
 
-      if (head == null || head.next == null)
-          return head;
+    Node leftNode = head;
+    Node rightNode = mid.next;
+    mid.next = null;
 
+    leftNode = mergeSort(leftNode);
+    rightNode = mergeSort(rightNode);
 
-     Node temp = head;
-     List<Integer> list = new ArrayList<>();
-    //  list.add(temp.data);
-     while (temp != null) {
-        list.add(temp.data);
+      return  mergeTwoLL(leftNode, rightNode);
 
-        if(temp.next != null){
-           temp = temp.next.next;
-        }else{
-            break;
-        }
-     }
-
-
-     temp = head.next;
-
-     while (temp != null) {
-         list.add(temp.data);
-
-         if (temp.next != null) {
-             temp = temp.next.next;
-         } else {
-             break;
-         }
-     }
-
-     temp = head;
-    //  System.out.println(list);
-     
-     int i= 0;
-     while (temp != null) {
-        temp.data = list.get(i);
-        temp = temp.next;
-        i++;
-     }
-
-     return head;
-     
-  }
-
-
-   public static Node groupLLV2 (Node head){
-      Node odd = head; 
-      Node even = head.next;
-      Node evenHead = even;
-      
-      while (even != null && even.next !=  null) {
-        odd.next = odd.next.next;
-        even.next = even.next.next;
-
-        odd = odd.next;
-        even = even.next;
-      }
-      
-      odd.next = evenHead;
-
-      return head;
-
-   }
-
-
-
-   
-
+    }
 
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2,3,2,1 ,4 };
-        // int[] arr2 = {  2 };
+        int[] arr = { 1, 2, 7, 4, 5 , 6};
+    
+        // int[] arr2 = { 2 ,8,9,66 };
         // Node y = new Node(3);
         // System.out.println(y.next);
         Node head = convertArraytoLinkedList(arr);
+
         // Node head2 = convertArraytoLinkedList(arr2);
 
         // System.out.println(lengthOfLinkedList(head));
@@ -453,9 +534,9 @@ public class LinkedList {
 
         // Node temp = head;
         // System.out.println(isPalindrome(head));
-        head = groupLLV2(head);
+        // head = removeNthFromEnd(head, 1);
+        head = mergeSort(head);
         Node temp = head;
-        
 
         while (temp != null) {
             System.out.print(temp.data + " ");
