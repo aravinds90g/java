@@ -1,4 +1,4 @@
-package LinkedList;
+package list.LinkedList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -487,29 +487,62 @@ public class LinkedList {
 
     }
 
-    public static Node mergeSort(Node head){
+    public static Node mergeSort(Node head) {
 
-    if(head == null || head.next == null){
-    return head;
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node mid = middleNode(head);
+
+        Node leftNode = head;
+        Node rightNode = mid.next;
+        mid.next = null;
+
+        leftNode = mergeSort(leftNode);
+        rightNode = mergeSort(rightNode);
+
+        return mergeTwoLL(leftNode, rightNode);
+
     }
 
-    Node mid = middleNode(head);
+    public static Node sort012(Node head) {
+        Node dummyNode0 = new Node(-1);
+        Node dummyNode1 = new Node(-1);
+        Node dummyNode2 = new Node(-1);
 
-    Node leftNode = head;
-    Node rightNode = mid.next;
-    mid.next = null;
+        Node t0 = dummyNode0;
+        Node t1 = dummyNode1;
+        Node t2 = dummyNode2;
 
-    leftNode = mergeSort(leftNode);
-    rightNode = mergeSort(rightNode);
+        Node temp = head;
 
-      return  mergeTwoLL(leftNode, rightNode);
+        while (temp != null) {
+            if (temp.data == 0) {
+                t0.next = temp;
+                t0 = temp;
+            } else if (temp.data == 1) {
+                t1.next = temp;
+                t1 = temp;
+            } else {
+                t2.next = temp;
+                t2 = temp;
+            }
+            temp = temp.next;
+        }
 
+      
+        t0.next = (dummyNode1.next != null) ? dummyNode1.next : dummyNode2.next;
+        t1.next = dummyNode2.next;
+        t2.next = null;
+
+        return dummyNode0.next;
     }
 
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2, 7, 4, 5 , 6};
-    
+        int[] arr = { 1, 0, 2, 0, 2, 1, 2, 1, 0, 0, 1 };
+
         // int[] arr2 = { 2 ,8,9,66 };
         // Node y = new Node(3);
         // System.out.println(y.next);
@@ -535,7 +568,7 @@ public class LinkedList {
         // Node temp = head;
         // System.out.println(isPalindrome(head));
         // head = removeNthFromEnd(head, 1);
-        head = mergeSort(head);
+        head = sort012(head);
         Node temp = head;
 
         while (temp != null) {
