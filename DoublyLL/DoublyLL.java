@@ -168,8 +168,38 @@ public class DoublyLL {
 
     }
 
+
+     
+    public static Node deleteAllValue(Node head , int k){
+        Node temp = head;
+        
+        while(temp != null){
+            if(temp.data == k ){
+                if(temp == head){
+                    head = head.next;
+                }
+
+                Node nextNode = temp.next;
+                Node prevNode = temp.back;
+                
+                if(nextNode != null) 
+                    nextNode.back = prevNode;
+                
+                if(prevNode != null)
+                    prevNode.next = nextNode;
+               
+               temp = nextNode;
+            }else{
+                temp = temp.next;
+            }
+        }
+
+        return head;
+    }
+
+
     public static void main(String[] args) {
-        int[] arr = { 78, 1, 3, 4, 5, 6, 8, 9 };
+        int[] arr = { 2, 1, 3, 4, 2, 6, 2, 9 };
         Node head = convertToDLL(arr);
 
         // head = removeHead(head);
@@ -179,9 +209,11 @@ public class DoublyLL {
 
         // head = insertHead(head, 999);
 
-       head = insertNode(head, 888, 44);
+    //    head = insertNode(head, 888, 44);
 
-       head = reverseDLL(head);
+    //    head = reverseDLL(head);
+
+       head = deleteAllValue(head ,2);
 
         Node temp = head;
         while (temp != null) {

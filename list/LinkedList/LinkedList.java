@@ -538,10 +538,47 @@ public class LinkedList {
 
         return dummyNode0.next;
     }
+     
 
+    public static Node addOne(Node head) {
+		// Write your code here.
+
+		Node temp = head;
+
+		int carry = helperFunction(temp);
+
+		if(carry == 1){
+			Node newNode  = new Node(1);
+			newNode.next = head;
+
+			return newNode;
+		}
+
+		return head;
+		
+	}
+
+    public static int helperFunction(Node temp) {
+
+        if (temp == null) {
+            return 1;
+        }
+
+        int carry = helperFunction(temp.next);
+
+        temp.data = temp.data + carry;
+
+        if (temp.data < 10) {
+            return 0;
+        } else {
+            temp.data = 0;
+            return 1;
+        }
+
+    }
     public static void main(String[] args) {
 
-        int[] arr = { 1, 0, 2, 0, 2, 1, 2, 1, 0, 0, 1 };
+        int[] arr = {  9 , 9,9 ,9 ,9 ,9  };
 
         // int[] arr2 = { 2 ,8,9,66 };
         // Node y = new Node(3);
@@ -568,7 +605,7 @@ public class LinkedList {
         // Node temp = head;
         // System.out.println(isPalindrome(head));
         // head = removeNthFromEnd(head, 1);
-        head = sort012(head);
+        head = addOne(head);
         Node temp = head;
 
         while (temp != null) {
