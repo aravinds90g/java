@@ -630,9 +630,33 @@ public class LinkedList {
         }
     }
 
+    public static Node rotateLL(Node head , int k){
+        if (head == null || head.next == null || k == 0)
+            return head;
+        // calculating length
+        Node temp = head;
+        int length = 1;
+        while (temp.next != null) {
+            ++length;
+            temp = temp.next;
+        }
+        // link last node to first node
+        temp.next = head;
+        k = k % length; // when k is more than length of list
+        int end = length - k; // to get end of the list
+        while (end-- != 0)
+            temp = temp.next;
+        // breaking last node link and pointing to NULL
+        head = temp.next;
+        temp.next = null;
+
+        return head;
+
+    }
+
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        int[] arr = { 1, 2 , 3, 4, 5 };
 
         // int[] arr2 = { 2 ,8,9,66 };
         // Node y = new Node(3);
@@ -659,7 +683,7 @@ public class LinkedList {
         // Node temp = head;
         // System.out.println(isPalindrome(head));
         // head = removeNthFromEnd(head, 1);
-        head = reverseKthGroupLL(head, 4);
+        head = rotateLL(head , 2);
         Node temp = head;
 
         while (temp != null) {
