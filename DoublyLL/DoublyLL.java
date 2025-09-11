@@ -1,5 +1,11 @@
 package DoublyLL;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 class Node {
     int data;
     Node next;
@@ -197,9 +203,55 @@ public class DoublyLL {
         return head;
     }
 
+    public static <T> ArrayList<ArrayList<Integer>> findPairsWithGivenSum(int target,
+                                                                      Node head) {
+        // code here
+        HashMap<Integer, Integer> map = new HashMap<>();
+        ArrayList<ArrayList<Integer>> arr = new ArrayList<>();
+
+        Node temp = head;
+
+        while (temp != null) {
+            int sum = target - temp.data;
+
+            if (map.containsKey(sum)) {
+                ArrayList<Integer> list = new ArrayList<>(); 
+                list.add(sum);
+                list.add(temp.data);
+                arr.add(list);
+            }
+
+            // store current node’s data
+            map.put(temp.data, temp.data);
+
+            temp = temp.next;
+        }
+        // Collections.sort((List<T>) arr);
+        return arr;
+    }
+    
+
+    public static Node removeDupNode(Node head){
+        Node temp = head;
+         
+        while (temp.next != null) {
+            // Node prevNode = temp.back;
+            if (temp.data == temp.next.data) {
+                // skip duplicate
+                temp.next = temp.next.next;
+                if (temp.next != null) {
+                    temp.next.back = temp;
+                }
+            } else {
+                temp = temp.next;
+            }
+        }
+
+        return head;
+    }
 
     public static void main(String[] args) {
-        int[] arr = { 2, 1, 3, 4, 2, 6, 2, 9 };
+        int[] arr = { 1,2,2,2,3,4 };
         Node head = convertToDLL(arr);
 
         // head = removeHead(head);
@@ -212,8 +264,14 @@ public class DoublyLL {
     //    head = insertNode(head, 888, 44);
 
     //    head = reverseDLL(head);
+      
+    // ArrayList<ArrayList<Integer>> va = findPairsWithGivenSum(5, head);
 
-       head = deleteAllValue(head ,2);
+    // System.out.println(va);
+     
+     head = removeDupNode(head);
+
+    //    head = deleteAllValue(head ,2);
 
         Node temp = head;
         while (temp != null) {

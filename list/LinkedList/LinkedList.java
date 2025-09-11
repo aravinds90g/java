@@ -531,32 +531,30 @@ public class LinkedList {
             temp = temp.next;
         }
 
-      
         t0.next = (dummyNode1.next != null) ? dummyNode1.next : dummyNode2.next;
         t1.next = dummyNode2.next;
         t2.next = null;
 
         return dummyNode0.next;
     }
-     
 
     public static Node addOne(Node head) {
-		// Write your code here.
+        // Write your code here.
 
-		Node temp = head;
+        Node temp = head;
 
-		int carry = helperFunction(temp);
+        int carry = helperFunction(temp);
 
-		if(carry == 1){
-			Node newNode  = new Node(1);
-			newNode.next = head;
+        if (carry == 1) {
+            Node newNode = new Node(1);
+            newNode.next = head;
 
-			return newNode;
-		}
+            return newNode;
+        }
 
-		return head;
-		
-	}
+        return head;
+
+    }
 
     public static int helperFunction(Node temp) {
 
@@ -576,9 +574,65 @@ public class LinkedList {
         }
 
     }
+
+    public static Node findKthNode(Node head, int k) {
+        Node temp = head;
+        k -= 1;
+        while (temp != null && k > 0) {
+            temp = temp.next;
+            k--;
+        }
+
+        return temp;
+    }
+
+    public static Node reverseKthGroupLL(Node head, int k) {
+        Node temp = head;
+        Node prevNode = null;
+        Node nextNode = null;
+        while (temp != null) {
+            Node kthNode = findKthNode(temp, k);
+            if (kthNode == null) {
+                if (prevNode != null)
+                    prevNode.next = temp;
+                break;
+            }
+            
+            nextNode = kthNode.next;
+            kthNode.next = null;
+
+
+            // printLL(kthNode);
+            reverseList(temp);
+            // System.out.println();
+
+            if (temp == head) {
+                head = kthNode;
+            } else {
+                prevNode.next = kthNode;
+            }
+
+            prevNode = temp;
+            temp = nextNode;
+
+        }
+
+        return head;
+
+    }
+
+    public static void printLL(Node head){
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+
     public static void main(String[] args) {
 
-        int[] arr = {  9 , 9,9 ,9 ,9 ,9  };
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
         // int[] arr2 = { 2 ,8,9,66 };
         // Node y = new Node(3);
@@ -605,7 +659,7 @@ public class LinkedList {
         // Node temp = head;
         // System.out.println(isPalindrome(head));
         // head = removeNthFromEnd(head, 1);
-        head = addOne(head);
+        head = reverseKthGroupLL(head, 4);
         Node temp = head;
 
         while (temp != null) {
