@@ -119,7 +119,29 @@ public class Code {
 
       stack.push(elem);
   }
+  
 
+  public static void reverseStack(Stack<Integer> stack ){
+
+     if (stack.isEmpty()) {
+       return;
+     }
+      int top = stack.pop();
+      reverseStack(stack);
+
+      insertElementAtBottom(stack , top);
+  }
+
+  public static void insertElementAtBottom(Stack<Integer> stack , int temp){
+        if(stack.isEmpty()){
+          stack.push(temp);
+          return;
+        }
+
+        int top = stack.pop();
+        insertElementAtBottom(stack, temp);
+        stack.push(top);
+  }
 
    public static void main(String[] args) {
       int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -136,6 +158,7 @@ public class Code {
       stack.push(53);
       stack.push(566);
       sort(stack);
+      reverseStack(stack);
       System.out.println(stack);
 
    }
