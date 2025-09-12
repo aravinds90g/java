@@ -8,15 +8,17 @@ import java.util.Stack;
 class Node {
     int data;
     Node next;
-
+    // Node random;
     Node(int data, Node next1) {
         this.data = data;
         this.next = next1;
+
     }
 
     Node(int data) {
         this.data = data;
         this.next = null;
+        // this.random = null;
     }
 }
 
@@ -653,6 +655,8 @@ public class LinkedList {
         return head;
 
     }
+
+
 
     public static void main(String[] args) {
 

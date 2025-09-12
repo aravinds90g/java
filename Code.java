@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Stack;
 
 public class Code {
 
@@ -95,12 +96,48 @@ public class Code {
 
       return ans;
    }
+  
+  public static void sort(Stack<Integer> stack){
+      if (stack.isEmpty()) {
+         return;
+      }
+
+      int temp = stack.pop();
+      sort(stack);
+
+      insertElement(stack , temp);
+  }
+
+  public static void insertElement(Stack<Integer> stack , int temp){
+      if( stack.isEmpty() || stack.peek() < temp  ){
+         stack.push(temp);
+         return;
+      }
+
+      int elem = stack.pop();
+      insertElement(stack, temp);
+
+      stack.push(elem);
+  }
+
 
    public static void main(String[] args) {
       int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     
       // System.out.println(value);
-      System.out.println(divide(-2147483648, -1));
+      // System.out.println(divide(-2147483648, -1));
+
+      Stack<Integer> stack = new Stack<>();
+
+      stack.push(5);
+      stack.push(99);
+      stack.push(45);
+      stack.push(576);
+      stack.push(53);
+      stack.push(566);
+      sort(stack);
+      System.out.println(stack);
+
    }
 
 }
