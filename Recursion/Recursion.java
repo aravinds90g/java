@@ -59,12 +59,30 @@ public class Recursion {
         return false;
     }
 
+    public static int findMax(int arr[]){
+        int max = maxHelper(arr , 0);
+        return max;
+    }
+
+    public static int maxHelper(int arr[] , int i){
+        if (arr.length -1  == i) {
+            return arr[i];
+        }
+
+        int max = maxHelper(arr,i+1);
+
+        return Math.max(arr[i], max);
+    }
+
     
 
 
     public static void main(String[] args) {
         // System.out.println(sumOfFirstNth(5));
         // System.out.println(power(2, 5));
-        System.out.println(countVowel("aeiou"));
+
+        // System.out.println(countVowel("aeiou"));
+        int arr[] = {1,4,55,3,4,3,4};
+        System.out.println(findMax(arr));
     }    
 }
