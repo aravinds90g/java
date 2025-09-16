@@ -655,12 +655,39 @@ public class LinkedList {
         return head;
 
     }
+   
 
+    public static Node deleteDuplicates(Node head) {
+        Node dummyNode = new Node(0);
+
+        dummyNode.next = head;
+
+        Node current = head;
+        Node prevNode = dummyNode;
+
+        while (current != null) {
+
+            while (current.next != null && current.data == current.next.data) {
+                current = current.next;
+            }
+
+            if (prevNode.next == current) {
+                prevNode = prevNode.next;
+            } else {
+                prevNode.next = current.next;
+            }
+
+            current = current.next;
+
+        }
+
+        return dummyNode.next;
+    }
 
 
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2 , 3, 4, 5 };
+        int[] arr = { 1, 2 , 3, 4, 5,5 };
 
         // int[] arr2 = { 2 ,8,9,66 };
         // Node y = new Node(3);
@@ -687,7 +714,8 @@ public class LinkedList {
         // Node temp = head;
         // System.out.println(isPalindrome(head));
         // head = removeNthFromEnd(head, 1);
-        head = rotateLL(head , 2);
+        // head = rotateLL(head , 2);
+        head = deleteDuplicates(head);
         Node temp = head;
 
         while (temp != null) {

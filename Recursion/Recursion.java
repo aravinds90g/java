@@ -74,6 +74,38 @@ public class Recursion {
         return Math.max(arr[i], max);
     }
 
+    public static boolean linearSearch(int arr[], int target , int i){
+          
+        if (i == arr.length || i < 0) {
+            return false;
+        }
+        
+        if (arr[i] == target) {
+            return true;
+        }
+      
+       
+        return linearSearch(arr, target, i+1);
+        
+    }
+
+    public static boolean isSort(int arr[] , int i){
+        if (i == arr.length) {
+            return true;
+        }
+
+        if (arr[i-1] > arr[i]) {
+            return false;
+        }
+
+        return isSort(arr, i+1);
+
+    }
+
+    
+
+    public static 
+
     
 
 
@@ -82,7 +114,7 @@ public class Recursion {
         // System.out.println(power(2, 5));
 
         // System.out.println(countVowel("aeiou"));
-        int arr[] = {1,4,55,3,4,3,4};
-        System.out.println(findMax(arr));
+        int arr[] = {1,4 , 9 ,8};
+        System.out.println(isSort(arr , 1));
     }    
 }
