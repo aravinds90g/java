@@ -8,6 +8,7 @@ import java.util.Stack;
 class Node {
     int data;
     Node next;
+
     // Node random;
     Node(int data, Node next1) {
         this.data = data;
@@ -599,10 +600,9 @@ public class LinkedList {
                     prevNode.next = temp;
                 break;
             }
-            
+
             nextNode = kthNode.next;
             kthNode.next = null;
-
 
             // printLL(kthNode);
             reverseList(temp);
@@ -623,7 +623,7 @@ public class LinkedList {
 
     }
 
-    public static void printLL(Node head){
+    public static void printLL(Node head) {
         Node temp = head;
 
         while (temp != null) {
@@ -632,7 +632,7 @@ public class LinkedList {
         }
     }
 
-    public static Node rotateLL(Node head , int k){
+    public static Node rotateLL(Node head, int k) {
         if (head == null || head.next == null || k == 0)
             return head;
         // calculating length
@@ -655,7 +655,6 @@ public class LinkedList {
         return head;
 
     }
-   
 
     public static Node deleteDuplicates(Node head) {
         Node dummyNode = new Node(0);
@@ -684,10 +683,34 @@ public class LinkedList {
         return dummyNode.next;
     }
 
+    public static Node reverseBetween(Node head, int left, int right) {
+        if (head == null || left == right) {
+            return head;
+        }
+
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node prev = dummy;
+
+        for (int i = 0; i < left; i++) {
+            prev = prev.next;
+        }
+        Node current = prev.next;
+        Node next = null;
+
+        for (int i = 0; i < right - left - 1; i++) {
+            next = current.next;
+            current.next = next.next;
+            next.next = prev.next;
+            prev.next = next;
+        }
+
+        return dummy.next;
+    }
 
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2 , 3, 4, 5,5 };
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         // int[] arr2 = { 2 ,8,9,66 };
         // Node y = new Node(3);
@@ -715,7 +738,9 @@ public class LinkedList {
         // System.out.println(isPalindrome(head));
         // head = removeNthFromEnd(head, 1);
         // head = rotateLL(head , 2);
-        head = deleteDuplicates(head);
+        // head = deleteDuplicates(head);
+
+        head = reverseBetween(head, 2, 5);
         Node temp = head;
 
         while (temp != null) {
